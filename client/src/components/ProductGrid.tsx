@@ -72,12 +72,12 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
   if (products.length === 0) {
     const suggestions = [
-      'Gaming laptop',
-      'Running shoes',
+      'Laptop',
+      'Shoes',
       'Coffee maker',
-      'Wireless headphones',
-      'Smartphone',
-      'Fitness tracker'
+      'Headphones',
+      'Phone',
+      'Watch'
     ];
 
     return (

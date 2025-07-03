@@ -340,7 +340,7 @@ function App() {
                 justifyContent: 'center',
                 gap: 2
               }}>
-                {['Gaming laptop', 'Running shoes', 'Coffee maker', 'Wireless headphones'].map((example) => (
+                {['Laptop', 'Shoes', 'Coffee maker', 'Headphones'].map((example) => (
                   <Box
                     key={example}
                     sx={{

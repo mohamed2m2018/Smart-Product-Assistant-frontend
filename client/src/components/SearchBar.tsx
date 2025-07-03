@@ -25,12 +25,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const [query, setQuery] = useState('');
   const [focused, setFocused] = useState(false);
   const [suggestions] = useState([
-    "Nike running shoes for women",
-    "MacBook Pro 14 inch for video editing", 
-    "Bluetooth headphones under $200",
-    "Kitchen coffee maker with timer",
-    "Gaming laptop with RTX graphics",
-    "Wireless earbuds for workouts"
+    "Laptop",
+    "Headphones",
+    "Shoes",
+    "Coffee maker",
+    "Phone",
+    "Watch"
   ]);
 
   const handleSubmit = (e: React.FormEvent) => {
