@@ -15,10 +15,16 @@ interface LoadingSpinnerProps {
 
 const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 40,
-  message = "Loading...",
+  message,
   overlay = false,
   color = 'primary'
 }) => {
+  // Handle message logic:
+  // - If message is undefined, use "Loading..." as default
+  // - If message is empty string, show no message
+  // - If message is a non-empty string, use that message
+  const displayMessage = message === undefined ? "Loading..." : (message === "" ? null : message);
+
   const spinnerContent = (
     <Box
       sx={{
@@ -98,7 +104,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
         }} />
       </Box>
 
-      {message && (
+      {displayMessage && (
         <Typography
           variant="h6"
           sx={{
@@ -116,7 +122,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
             }
           }}
         >
-          {message}
+          {displayMessage}
         </Typography>
       )}
     </Box>
@@ -153,7 +159,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
               color: 'primary.main',
             }}
           />
-          {message && (
+          {displayMessage && (
             <Typography
               variant="body1"
               sx={{
@@ -162,7 +168,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
                 color: 'text.primary',
               }}
             >
-              {message}
+              {displayMessage}
             </Typography>
           )}
         </Box>

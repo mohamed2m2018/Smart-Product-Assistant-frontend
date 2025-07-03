@@ -96,14 +96,18 @@ describe('ProductCard', () => {
     
     render(<ProductCard product={mockProduct} onClick={mockOnClick} />);
     
-    const card = screen.getByRole('img').closest('div');
+    // Find the Card component which has the cursor style applied
+    const card = screen.getByRole('img').closest('.MuiCard-root') || 
+                 screen.getByRole('img').parentElement?.parentElement;
     expect(card).toHaveStyle('cursor: pointer');
   });
 
   it('does not apply hover styles when onClick is not provided', () => {
     render(<ProductCard product={mockProduct} />);
     
-    const card = screen.getByRole('img').closest('div');
+    // Find the Card component which has the cursor style applied
+    const card = screen.getByRole('img').closest('.MuiCard-root') || 
+                 screen.getByRole('img').parentElement?.parentElement;
     expect(card).toHaveStyle('cursor: default');
   });
 

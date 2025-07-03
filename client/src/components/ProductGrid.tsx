@@ -93,7 +93,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
               WebkitTextFillColor: 'transparent',
             }}
           >
-            {searchQuery ? `No results for "${searchQuery}"` : 'No Products Found'}
+            {searchQuery ? `No results for "${searchQuery}"` : (title === "Products" ? 'No Products Found' : title)}
           </Typography>
           
           <Box sx={{

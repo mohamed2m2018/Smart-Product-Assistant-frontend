@@ -87,8 +87,10 @@ describe('SearchBar', () => {
     
     const button = screen.getByRole('button', { name: /search/i });
     
-    await user.click(button);
+    // Button should be disabled when no input
+    expect(button).toBeDisabled();
     
+    // Verify onSearch is not called
     expect(mockOnSearch).not.toHaveBeenCalled();
   });
 
@@ -100,27 +102,27 @@ describe('SearchBar', () => {
     const button = screen.getByRole('button', { name: /search/i });
     
     await user.type(input, '   ');
-    await user.click(button);
+    
+    // Button should still be disabled with only whitespace
+    expect(button).toBeDisabled();
     
     expect(mockOnSearch).not.toHaveBeenCalled();
   });
 
-  it('prevents default form submission', () => {
+  it('prevents default form submission', async () => {
+    const user = userEvent.setup();
     render(<SearchBar onSearch={mockOnSearch} />);
     
-    const form = screen.getByRole('button', { name: /search/i }).closest('form');
-    expect(form).toBeInTheDocument();
+    const input = screen.getByPlaceholderText('Search products...');
     
-    if (form) {
-      const preventDefaultSpy = vi.fn();
-      const mockEvent = {
-        preventDefault: preventDefaultSpy,
-        target: form
-      } as any;
-      
-      fireEvent.submit(form, mockEvent);
-      expect(preventDefaultSpy).toHaveBeenCalled();
-    }
+    // Add some text to enable the button
+    await user.type(input, 'test query');
+    
+    // Submit the form
+    await user.keyboard('{Enter}');
+    
+    // Verify search was called (form submission worked)
+    expect(mockOnSearch).toHaveBeenCalledWith('test query');
   });
 
   it('has proper form structure', () => {

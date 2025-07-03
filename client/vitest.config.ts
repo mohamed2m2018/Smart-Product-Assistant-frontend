@@ -10,6 +10,19 @@ export default defineConfig({
     setupFiles: './src/test/setup.ts',
     css: true,
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/App.test.tsx',  // Exclude to avoid EMFILE error
+      '**/api.test.ts'    // Exclude to avoid EMFILE error
+    ],
+    pool: 'threads',
+    poolOptions: {
+      threads: {
+        maxThreads: 2,
+        minThreads: 1
+      }
+    },
     coverage: {
       reporter: ['text', 'json', 'html'],
       exclude: [

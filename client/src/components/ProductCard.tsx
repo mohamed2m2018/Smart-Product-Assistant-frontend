@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import LaunchIcon from '@mui/icons-material/Launch';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 export interface Product {
@@ -91,8 +90,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
           image={product.image}
           alt={product.name}
           onError={(e) => {
-            // Fallback to a data URI placeholder image if the image fails to load
-            (e.target as HTMLImageElement).src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjVmNWY1Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlIEF2YWlsYWJsZTwvdGV4dD4KICA8cmVjdCB4PSI0MCIgeT0iNDAiIHdpZHRoPSIyMjAiIGhlaWdodD0iMTIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNjY2NjY2MiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNSw1Ii8+Cjwvc3ZnPg==';
+            // Fallback to a placeholder image if the image fails to load
+            (e.target as HTMLImageElement).src = 'https://via.placeholder.com/300x200?text=No+Image';
           }}
         />
       </Box>
@@ -255,30 +254,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
             )}
           </Box>
         )}
-        
-        {/* Quick Action Button */}
-        <Box sx={{ mt: 'auto', pt: 2 }}>
-          <Button
-            fullWidth
-            variant="outlined"
-            startIcon={<LaunchIcon />}
-            onClick={handleClick}
-            sx={{
-              borderRadius: 3,
-              textTransform: 'none',
-              fontWeight: 600,
-              borderColor: 'primary.main',
-              color: 'primary.main',
-              '&:hover': {
-                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)',
-                borderColor: 'primary.dark',
-                transform: 'translateY(-2px)',
-              }
-            }}
-          >
-            View Details
-          </Button>
-        </Box>
       </CardContent>
     </Card>
   );
