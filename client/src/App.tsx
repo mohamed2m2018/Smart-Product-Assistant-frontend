@@ -25,9 +25,10 @@ import {
   SearchHistory,
   PopularSearches,
   UserMenu,
-  FilterAndSort
+  FilterAndSort,
+  type Product
 } from './components';
-import { productApi, apiUtils, type Product, type SearchFilters, type SearchOptions } from './services/api';
+import { productApi, apiUtils, type SearchFilters, type SearchOptions } from './services/api';
 
 // Create a stunning modern theme
 const theme = createTheme({
@@ -211,7 +212,6 @@ function App() {
   const handleProductClick = (product: Product) => {
     // TODO: Navigate to product detail page using react-router-dom
     console.log('Product clicked:', product);
-    alert(`Product: ${product.name}\nPrice: $${product.price}\nID: ${product.id}`);
   };
 
   const resetSearch = () => {
