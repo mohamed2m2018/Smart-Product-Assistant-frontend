@@ -264,7 +264,7 @@ function App() {
         }}>
           <LoadingSpinner 
             size={80} 
-            message="Initializing AI Product Assistant..." 
+            message="We are fetching your results..." 
           />
         </Box>
       </ThemeProvider>
