@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
+import type { Product } from './ProductCard';
 import ProductGrid from './ProductGrid';
-import { Product } from './ProductCard';
 
 const mockProducts: Product[] = [
   {

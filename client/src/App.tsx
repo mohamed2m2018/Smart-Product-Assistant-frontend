@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { 
-  Container, 
   Box, 
   Typography, 
   Alert, 
   Snackbar, 
   Tabs, 
   Tab, 
-  Paper,
-  Divider,
-  Chip
+  Paper
 } from '@mui/material';
 import { 
   Search as SearchIcon,
@@ -133,13 +130,6 @@ function TabPanel(props: TabPanelProps) {
       )}
     </div>
   );
-}
-
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
 }
 
 function App() {

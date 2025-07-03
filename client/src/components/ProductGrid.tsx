@@ -216,7 +216,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           width: '100%',
           maxWidth: '100%'
         }}>
-          {products.map((product, index) => (
+          {products.map((product) => (
             <ProductCard
               key={product.id}
               product={product}

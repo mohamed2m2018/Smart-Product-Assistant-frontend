@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import axios from 'axios';
 import { productApi, apiUtils } from './api';
-import { Product } from '../components';
+import type { Product } from '../components';
 
 // Mock axios
 vi.mock('axios', () => ({
@@ -119,20 +119,20 @@ describe('API Service', () => {
       const query = 'I need a laptop for gaming';
       mockAxiosInstance.post.mockResolvedValue({ data: mockProducts });
 
-      const result = await productApi.aiSearch(query);
+      const result = await productApi.aiSearch({ query });
 
       expect(mockAxiosInstance.post).toHaveBeenCalledWith('/search', { query });
       expect(result).toEqual(mockProducts);
     });
 
     it('handles AI search error', async () => {
-      const query = 'test query';
+      const query = 'test search';
       const errorResponse = {
         response: { status: 500, data: { message: 'AI service unavailable' } }
       };
       mockAxiosInstance.post.mockRejectedValue(errorResponse);
 
-      await expect(productApi.aiSearch(query)).rejects.toEqual(errorResponse);
+      await expect(productApi.aiSearch({ query })).rejects.toEqual(errorResponse);
     });
   });
 

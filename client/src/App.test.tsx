@@ -25,7 +25,7 @@ vi.mock('./services/api', () => ({
     aiSearch: vi.fn(),
   },
   apiUtils: {
-    getErrorMessage: vi.fn((error) => 'API Error occurred'),
+    getErrorMessage: vi.fn((_error) => 'API Error occurred'),
   },
 }));
 

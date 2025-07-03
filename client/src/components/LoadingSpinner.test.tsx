@@ -101,7 +101,7 @@ describe('LoadingSpinner', () => {
   });
 
   it('renders multiple spinners independently', () => {
-    const { container } = render(
+    render(
       <div>
         <LoadingSpinner message="First spinner" />
         <LoadingSpinner message="Second spinner" />
