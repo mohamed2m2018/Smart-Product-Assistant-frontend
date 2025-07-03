@@ -136,6 +136,7 @@ function App() {
   // State management
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isFilteringOrSorting, setIsFilteringOrSorting] = useState(false); // New state for filter/sort operations
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentTab, setCurrentTab] = useState(0);
@@ -165,9 +166,14 @@ function App() {
     }
   };
 
-  const handleSearch = async (query: string, newFilters?: SearchFilters, newSortBy?: SearchOptions['sortBy']) => {
+  const handleSearch = async (query: string, newFilters?: SearchFilters, newSortBy?: SearchOptions['sortBy'], isFilterOperation = false) => {
     try {
-      setIsLoading(true);
+      // Use different loading states for search vs filter/sort
+      if (isFilterOperation) {
+        setIsFilteringOrSorting(true);
+      } else {
+        setIsLoading(true);
+      }
       setError(null);
       setSearchQuery(query);
       
@@ -195,7 +201,11 @@ function App() {
       console.error('Error searching products:', err);
       setError(apiUtils.getErrorMessage(err));
     } finally {
-      setIsLoading(false);
+      if (isFilterOperation) {
+        setIsFilteringOrSorting(false);
+      } else {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -228,7 +238,7 @@ function App() {
     setFilters(newFilters);
     // Only apply filters when there's an active search
     if (searchQuery) {
-      handleSearch(searchQuery, newFilters, sortBy);
+      handleSearch(searchQuery, newFilters, sortBy, true); // Pass true to indicate filter operation
     }
   };
 
@@ -236,7 +246,7 @@ function App() {
     setSortBy(newSortBy);
     // Only apply sorting when there's an active search
     if (searchQuery) {
-      handleSearch(searchQuery, filters, newSortBy);
+      handleSearch(searchQuery, filters, newSortBy, true); // Pass true to indicate sort operation
     }
   };
 
@@ -495,6 +505,7 @@ function App() {
                     onFiltersChange={handleFiltersChange}
                     onSortChange={handleSortChange}
                     totalResults={products.length}
+                    isLoading={isFilteringOrSorting}
                   />
                 )}
                 
@@ -506,7 +517,8 @@ function App() {
                     `🎯 AI Recommendations (${products.length} found)` : 
                     `✨ Featured Products (${products.length} total)`
                   }
-                  loading={isLoading}
+                  loading={isLoading || isFilteringOrSorting}
+                  isFilteringSorting={isFilteringOrSorting}
                 />
               </Box>
             )}

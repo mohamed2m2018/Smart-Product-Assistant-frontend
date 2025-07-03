@@ -34,6 +34,7 @@ interface FilterAndSortProps {
   onFiltersChange: (filters: SearchFilters) => void;
   onSortChange: (sortBy: SearchOptions['sortBy']) => void;
   totalResults?: number;
+  isLoading?: boolean;
 }
 
 const FilterAndSort: React.FC<FilterAndSortProps> = ({
@@ -41,7 +42,8 @@ const FilterAndSort: React.FC<FilterAndSortProps> = ({
   sortBy,
   onFiltersChange,
   onSortChange,
-  totalResults = 0
+  totalResults = 0,
+  isLoading = false
 }) => {
   const [showFilters, setShowFilters] = useState(false);
 
@@ -115,6 +117,21 @@ const FilterAndSort: React.FC<FilterAndSortProps> = ({
             <Typography variant="h6" sx={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
               <TuneIcon sx={{ color: 'primary.main' }} />
               Sort & Filter
+              {isLoading && (
+                <Box sx={{
+                  width: 12,
+                  height: 12,
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  animation: 'pulse 1s ease-in-out infinite',
+                  ml: 1,
+                  '@keyframes pulse': {
+                    '0%': { opacity: 0.6, transform: 'scale(0.8)' },
+                    '50%': { opacity: 1, transform: 'scale(1.2)' },
+                    '100%': { opacity: 0.6, transform: 'scale(0.8)' },
+                  }
+                }} />
+              )}
             </Typography>
             {totalResults > 0 && (
               <Chip 

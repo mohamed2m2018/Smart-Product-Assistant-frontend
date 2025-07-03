@@ -16,6 +16,7 @@ interface ProductGridProps {
   onProductClick?: (product: Product) => void;
   title?: string;
   loading?: boolean;
+  isFilteringSorting?: boolean;
   onRetry?: () => void;
   searchQuery?: string;
 }
@@ -25,10 +26,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   onProductClick,
   title = "Products",
   loading = false,
+  isFilteringSorting = false,
   onRetry,
   searchQuery
 }) => {
-  if (loading) {
+  if (loading && !isFilteringSorting) {
     return (
       <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
         <Box sx={{ py: 6, textAlign: 'center' }}>
@@ -173,7 +175,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
   return (
     <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-      <Box sx={{ py: { xs: 4, sm: 6 } }}>
+      <Box sx={{ py: { xs: 4, sm: 6 }, position: 'relative' }}>
         <Typography 
           variant="h4" 
           component="h2" 
@@ -203,6 +205,51 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           {title}
         </Typography>
         
+        {/* Subtle loading overlay for filtering/sorting */}
+        {isFilteringSorting && (
+          <Box sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(255, 255, 255, 0.7)',
+            backdropFilter: 'blur(2px)',
+            zIndex: 10,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 2,
+          }}>
+            <Box sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
+              background: 'rgba(255, 255, 255, 0.95)',
+              padding: '12px 24px',
+              borderRadius: 3,
+              boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+              border: '1px solid rgba(102, 126, 234, 0.2)',
+            }}>
+              <Box sx={{
+                width: 16,
+                height: 16,
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                animation: 'pulse 1.5s ease-in-out infinite',
+                '@keyframes pulse': {
+                  '0%': { opacity: 0.6, transform: 'scale(0.8)' },
+                  '50%': { opacity: 1, transform: 'scale(1.2)' },
+                  '100%': { opacity: 0.6, transform: 'scale(0.8)' },
+                }
+              }} />
+              <Typography variant="body2" sx={{ fontWeight: 600, color: 'primary.main' }}>
+                🔍 Applying filters...
+              </Typography>
+            </Box>
+          </Box>
+        )}
+        
         <Box sx={{ 
           display: 'grid', 
           gridTemplateColumns: {
@@ -214,7 +261,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           },
           gap: { xs: 3, sm: 4 },
           width: '100%',
-          maxWidth: '100%'
+          maxWidth: '100%',
+          opacity: isFilteringSorting ? 0.5 : 1,
+          transition: 'opacity 0.3s ease'
         }}>
           {products.map((product) => (
             <ProductCard
