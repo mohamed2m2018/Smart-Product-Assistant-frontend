@@ -91,7 +91,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
           alt={product.name}
           onError={(e) => {
             // Fallback to a placeholder image if the image fails to load
-            (e.target as HTMLImageElement).src = 'https://via.placeholder.com/300x200?text=No+Image';
+            (e.target as HTMLImageElement).src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjVGNUY1Ii8+CjxwYXRoIGQ9Ik0xMjAgODBIMTgwVjEyMEgxMjBWODBaIiBmaWxsPSIjRTBFMEUwIi8+CjxjaXJjbGUgY3g9IjE0MCIgY3k9IjkwIiByPSI1IiBmaWxsPSIjQzBDMEMwIi8+CjxwYXRoIGQ9Ik0xMzAgMTEwTDE0NSA5NUwxNjAgMTEwSDE3MFYxMjBIMTMwVjExMFoiIGZpbGw9IiNDMEMwQzAiLz4KPHRleHQgeD0iMTUwIiB5PSIxNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Tm8gSW1hZ2U8L3RleHQ+Cjwvc3ZnPgo=';
           }}
         />
       </Box>

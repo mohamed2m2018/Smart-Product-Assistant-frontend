@@ -18,6 +18,7 @@ import {
 import { 
   SearchBar, 
   ProductGrid, 
+  ProductDetailView,
   LoadingSpinner,
   SearchHistory,
   PopularSearches,
@@ -141,6 +142,10 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentTab, setCurrentTab] = useState(0);
   
+  // Product detail view state
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isDetailViewOpen, setIsDetailViewOpen] = useState(false);
+  
   // Search filters and sorting state
   const [filters, setFilters] = useState<SearchFilters>({});
   const [sortBy, setSortBy] = useState<SearchOptions['sortBy']>('relevance');
@@ -210,8 +215,13 @@ function App() {
   };
 
   const handleProductClick = (product: Product) => {
-    // TODO: Navigate to product detail page using react-router-dom
-    console.log('Product clicked:', product);
+    setSelectedProduct(product);
+    setIsDetailViewOpen(true);
+  };
+
+  const handleCloseDetailView = () => {
+    setIsDetailViewOpen(false);
+    setSelectedProduct(null);
   };
 
   const resetSearch = () => {
@@ -539,6 +549,13 @@ function App() {
             {error}
           </Alert>
         </Snackbar>
+
+        {/* Product Detail View Modal */}
+        <ProductDetailView
+          product={selectedProduct}
+          open={isDetailViewOpen}
+          onClose={handleCloseDetailView}
+        />
       </Box>
     </ThemeProvider>
   );

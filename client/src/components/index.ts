@@ -1,6 +1,7 @@
 export { default as SearchBar } from './SearchBar';
 export { default as ProductCard } from './ProductCard';
 export { default as ProductGrid } from './ProductGrid';
+export { default as ProductDetailView } from './ProductDetailView';
 export { default as LoadingSpinner } from './LoadingSpinner';
 export { default as SearchHistory } from './SearchHistory';
 export { default as PopularSearches } from './PopularSearches';
