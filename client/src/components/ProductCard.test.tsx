@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import ProductCard from './ProductCard';
@@ -43,7 +43,7 @@ describe('ProductCard', () => {
     // Simulate image error
     fireEvent.error(image);
     
-    expect(image.src).toBe('https://via.placeholder.com/300x200?text=No+Image');
+    expect(image.src).toBe('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjVGNUY1Ii8+CjxwYXRoIGQ9Ik0xMjAgODBIMTgwVjEyMEgxMjBWODBaIiBmaWxsPSIjRTBFMEUwIi8+CjxjaXJjbGUgY3g9IjE0MCIgY3k9IjkwIiByPSI1IiBmaWxsPSIjQzBDMEMwIi8+CjxwYXRoIGQ9Ik0xMzAgMTEwTDE0NSA5NUwxNjAgMTEwSDE3MFYxMjBIMTMwVjExMFoiIGZpbGw9IiNDMEMwQzAiLz4KPHRleHQgeD0iMTUwIiB5PSIxNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Tm8gSW1hZ2U8L3RleHQ+Cjwvc3ZnPgo=');
   });
 
   it('formats price correctly with different currencies', () => {

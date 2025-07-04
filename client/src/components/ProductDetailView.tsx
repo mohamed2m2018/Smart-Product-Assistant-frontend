@@ -138,7 +138,7 @@ const ProductDetailView: React.FC<ProductDetailViewProps> = ({
                   objectFit: 'cover',
                 }}
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://via.placeholder.com/500x500?text=No+Image';
+                  (e.target as HTMLImageElement).src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRjVGNUY1Ii8+CjxwYXRoIGQ9Ik0yMDAgMjAwSDMwMFYzMDBIMjAwVjIwMFoiIGZpbGw9IiNFMEUwRTAiLz4KPGNpcmNsZSBjeD0iMjIwIiBjeT0iMjIwIiByPSIxMCIgZmlsbD0iI0MwQzBDMCIvPgo8cGF0aCBkPSJNMjMwIDI3MEwyNjAgMjQwTDI5MCAyNzBIMzAwVjMwMEgyMDBWMjcwSDIzMFoiIGZpbGw9IiNDMEMwQzAiLz4KPHR0ZXh0IHg9IjI1MCIgeT0iMzUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5OTk5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5vIEltYWdlPC90ZXh0Pgo8L3N2Zz4K';
                 }}
               />
             </Box>
